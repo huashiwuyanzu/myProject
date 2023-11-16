@@ -1,0 +1,63 @@
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+--
+-- Host: localhost    Database: gradingsystem
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `test`
+--
+
+DROP TABLE IF EXISTS `test`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `test` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `testId` char(20) NOT NULL,
+  `totalScore` int NOT NULL DEFAULT '0',
+  `courseId` char(20) NOT NULL,
+  `startTime` varchar(45) NOT NULL,
+  `endTime` varchar(45) NOT NULL,
+  `testName` varchar(45) NOT NULL DEFAULT '未命名测试',
+  `submitNumber` int NOT NULL DEFAULT '0',
+  `testStatus` enum('0','1','2') NOT NULL DEFAULT '0',
+  `updateTime` char(40) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `testId_UNIQUE` (`testId`),
+  KEY `fk_courseId_idx` (`courseId`),
+  CONSTRAINT `fk_courseId` FOREIGN KEY (`courseId`) REFERENCES `course` (`courseId`)
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test`
+--
+
+LOCK TABLES `test` WRITE;
+/*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (58,'OWgSgout',100,'IOSASD','1699617658061','1699714815061','第九周课堂小测',2,'2','1699964650000'),(59,'GMHgP8HZ',90,'IOSASD','1699907820288','1699965901686','数据结构考试',2,'2','1699965981000'),(60,'uXr2s6LV',34,'IOSASD','1699907820000','1699981452714','数据结构考试',0,'0',NULL),(61,'8VthDKxz',100,'DOAaTv08','1622427218359','1622427218359','编译原理项目课期末考试',50,'2','1699965981000'),(62,'yBXnuD71',100,'0jnuFEeN','1622427218359','1622427218359','数据库实验期末考试',50,'2',NULL),(63,'XT0JHy31',45,'In9F2azS','1700075683870','1700086302432','高等数学期末考试',2,'2','1700076332000'),(64,'qoVbTvQp',100,'zmJHlcof','1622427218359','1622427218359','数据库可视化第一次项目',50,'2',NULL);
+/*!40000 ALTER TABLE `test` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-11-16 17:50:29

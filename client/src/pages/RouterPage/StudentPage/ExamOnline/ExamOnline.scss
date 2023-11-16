@@ -1,0 +1,56 @@
+.exam-online {
+
+  &__header {
+    .examinfo-container {
+      .total-score {
+        margin-left: 40px;
+      }
+    }
+
+    .countdown-container {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      height: 100%;
+      padding-left: 40px;
+      font-size: 16px;
+
+      .submit {
+        margin-left: 80px;
+        font-size: 14px;
+        color: #1EC771B7;
+      }
+    }
+  }
+
+  &__content {
+    min-height: 94vh;
+    padding: 0 300px 0 300px;
+    .test-question {
+      padding: 5px 15px 0 15px;
+
+      &__type {
+        margin-right: 10px;
+      }
+
+      &__score {
+        margin-right: 5px;
+      }
+
+      .input {
+        width: 40%;
+      }
+
+      .text-area {
+        width: 60%;
+        margin-top: 7px;
+      }
+    }
+  }
+
+  @media (min-width: 500px) and (max-width: 1300px) {
+    &__content {
+      padding: 0 200px 0 200px;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+
+.createTest__content {
+  min-height: 94vh;
+  padding: 0 300px 0 300px;
+}
+
+@media (min-width: 500px) and (max-width: 1300px) {
+  .createTest__content {
+    padding: 0 100px 0 100px;
+  }
+}
+
+@media (max-width: 500px) {
+  .createTest__content {
+    display: none;
+  }
+}
+.itemBox {
+  width: 100%;
+  border: 1px solid red;
+  .formItem {
+    border: 1px solid blue;
+  }
+}
+.formItem {
+  padding-right: 400px;
+}

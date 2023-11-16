@@ -1,0 +1,53 @@
+.markOnline {
+
+  &__header {
+    .examinfo-container {
+      .test-info {
+        margin-left: 40px;
+      }
+    }
+
+    .submit-box {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      height: 100%;
+      padding-left: 40px;
+      font-size: 16px;
+
+      .submit {
+        margin-left: 80px;
+        font-size: 14px;
+        color: #1EC771B7;
+      }
+    }
+  }
+
+  &__content {
+    min-height: 94vh;
+    padding: 0 300px 0 300px;
+  }
+
+  .next {
+    position: fixed;
+    bottom: 50px;
+    right: 100px
+  }
+
+  .last {
+    position: fixed;
+    bottom: 50px;
+    left: 100px
+  }
+
+  @media (min-width: 500px) and (max-width: 1300px) {
+    &__content {
+      padding: 0 200px 0 200px;
+    }
+  }
+  @media (max-width: 500px) {
+    .last, .next {
+      display: none;
+    }
+  }
+}

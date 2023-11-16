@@ -1,0 +1,24 @@
+.testOnline {
+  .course {
+    margin: 10px 10px 0 10px;
+    &__desc {
+      margin-bottom: 15px;
+
+      p {
+        font-size: 13px;
+      }
+    }
+    .test__action {
+      color: #1EC771B7;
+    }
+  }
+}
+
+.courseList {
+  padding: 0;
+}
+@media (min-width: 1420px) {
+  .courseList {
+    padding: 0 100px 0 100px
+  }
+}

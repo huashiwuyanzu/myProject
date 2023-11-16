@@ -1,0 +1,48 @@
+.user {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px;
+
+  &__left {
+    height: 100%;
+
+    .userinfo-card {
+      &__edit {
+        color: #1EC771B7;
+        cursor: pointer;
+      }
+      &__content {
+        margin-left: 20px;
+        &-name {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        &-role {
+          color: gray;
+        }
+      }
+    }
+    .course-card {
+      margin-top: 10px;
+      &__pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &__right {
+    height: 100%;
+    width: 31%;
+    .message-card {
+      &__allread {
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+        color: #1EC771B7;
+        text-align: center;
+      }
+    }
+  }
+}

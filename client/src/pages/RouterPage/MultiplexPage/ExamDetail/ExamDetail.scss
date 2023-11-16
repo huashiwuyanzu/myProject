@@ -1,0 +1,28 @@
+.examDetail {
+  min-height: 100%;
+
+  &__content {
+    padding: 0 230px 0 230px;
+  }
+
+  .echartBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 500px) and (max-width: 1420px) {
+    &__content {
+      padding: 0
+    }
+  }
+  @media (max-width: 800px) {
+    .tool {
+      display: none;
+    }
+  }
+
+  .test {
+    border-bottom: none !important;
+  }
+}

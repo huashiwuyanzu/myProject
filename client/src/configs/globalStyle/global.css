@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box !important;
+    margin: 0;
+    padding: 0;
+}
+
+.antd--form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 0 0 30px;
+}
+
+.antd--form__item {
+    width: 70%;
+}
+
+.a__action {
+    color: #1EC771B7;
+}
+.a__action__danger {
+    color: red;
+}

@@ -1,0 +1,21 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerAndStart {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.bottomAndStart {
+    display: flex;
+    justify-content: start;
+    align-items: end;
+}
+
+.disabledA {
+    pointer-events: none;
+    color: gray;
+}

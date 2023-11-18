@@ -4,7 +4,7 @@ import {Form} from 'antd'
 import {countChar, getSearchInUrl, isInclude} from "@/utils/util.ts";
 import {$message} from "@/utils/render.tsx";
 import {createSingle} from "@/api/test_api.ts";
-import {useNavigate} from "react-router-dom";
+import {useMyNavigate} from "@/configs/router/config.tsx";
 
 const {Header, Content} = Layout
 const {RangePicker} = DatePicker
@@ -32,7 +32,7 @@ interface NewTest {
 
 function CreateTest() {
     const [form] = Form.useForm()
-    const navigate = useNavigate()
+    const myNavigate = useMyNavigate()
     // 发布新测试
     const submitHandler = function (value: NewTest) {
         const topicList: Array<any> = []
@@ -98,9 +98,7 @@ function CreateTest() {
         }
         createSingle(params).then((res: any) => {
             if (res.code === 0) {
-                navigate('/myResult?status=1', {
-                    replace: true
-                })
+                myNavigate('/myResult', {replace: true}, {status: '1'})
             } else {
                 $message('error', '操作失败，请稍后重试')
             }
@@ -162,7 +160,8 @@ function CreateTest() {
                                            }}
                                            wrapperCol={{md: {span: 18}, lg: {span: 20}, xl: {span: 16}}}
                                            rules={[{required: true, message: '题干必填'}]}
-                                ><TextArea size='small' rows={3} maxLength={200} showCount placeholder={placeholderInAreaText}/>
+                                ><TextArea size='small' rows={3} maxLength={200} showCount
+                                           placeholder={placeholderInAreaText}/>
                                 </Form.Item>
                                 {/*选项*/}
                                 {item.value === 'choice' ?

@@ -1,5 +1,4 @@
 import {Layout, Menu, Row, Col, Button, Input, Modal, Card, Image} from "antd";
-import {useNavigate} from "react-router-dom";
 import {Outlet} from "react-router-dom";
 import './AppLayout.scss';
 import {asideConfig} from "@/configs/router/config.tsx";
@@ -8,31 +7,37 @@ import store from "@/redux/store.ts";
 import {getSingleCourse, joinCourse} from "@/api/course_api.ts";
 import {$message} from "@/utils/render.tsx";
 import {getTime} from "@/utils/util.ts";
+import {useMyNavigate} from "@/configs/router/config.tsx";
 
 const {Sider, Footer, Header, Content} = Layout
 const {Meta} = Card
 
 function AppLayout() {
     const [items, setItems] = useState<any>([])
-    const navigate = useNavigate()
     const [showModal, setShowModal] = useState<boolean>(false)
     const [searchMode, setSearchMode] = useState<string | undefined>(undefined)
     const [searchData, setSearchData] = useState<any>(undefined)
+    const myNavigate = useMyNavigate()
     useEffect(() => {
-        setItems(asideConfig)
+        const asideItem = asideConfig.map(item => {
+            if (item.role?.indexOf((store.getState().userInfo.roleType) as string) !== -1) {
+                return item;
+            }
+        })
+        setItems(asideItem)
     }, [])
 
     // 注销
     function logout() {
         window.localStorage.removeItem('token')
-        navigate('/login', {
-            replace: true,
+        myNavigate('/login', {
+            replace: true
         })
     }
 
     // 页面跳转
     function toNewPage(e: any) {
-        navigate(e.key, {
+        myNavigate(e.key, {
             replace: false
         })
     }
@@ -100,7 +105,7 @@ function AppLayout() {
                             ></Input.Search>
                         ) : <a onClick={() => {
                             setShowModal(false)
-                            navigate('/appLayout/courseArr')
+                            myNavigate('/appLayout/courseArr')
                         }}>已加入</a>}
                     </div>
                 ]}
@@ -120,6 +125,7 @@ function AppLayout() {
 
     return (
         <Layout className='applayout'>
+            {/*课程搜索结果*/}
             <Modal
                 centered
                 open={showModal}
@@ -147,14 +153,14 @@ function AppLayout() {
             <Layout>
                 <Header className='applayout__header'>
                     <Row align='middle'>
-                        <Col xs={0} xl={16} >
+                        <Col xs={0} xl={16}>
                             {store.getState().userInfo.roleType === '学生' ?
                                 (
                                     <Input.Search
                                         className='applayout__header__search'
                                         placeholder="请输入课程编号进行查找"
                                         enterButton
-                                        style={{marginTop:16}}
+                                        style={{marginTop: 16}}
                                         onSearch={(value) => {
                                             searchCourse(value)
                                         }}

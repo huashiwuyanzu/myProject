@@ -8,7 +8,7 @@ import {getSearchInUrl, getTime} from "@/utils/util.ts";
 import {getPageTopicByTeacher, saveEditByTeacher} from "@/api/topic.ts";
 import {$message} from "@/utils/render.tsx";
 import globalCss from '@/configs/globalStyle/global.module.css'
-import {useNavigate} from "react-router-dom";
+import {useMyNavigate} from "@/configs/router/config.tsx";
 
 const {Header, Content} = Layout
 const search = getSearchInUrl(window.location.href)
@@ -28,7 +28,7 @@ function MarkOnline() {
     const [canFinish, setCanFinish] = useState<boolean>(false)
     const [modalBeRender, setModalBeRender] = useState<boolean>(false)
     const [form] = Form.useForm()
-    const navigate = useNavigate()
+    const myNavigate = useMyNavigate()
 
     // 获取测试数据
     function getTestInfo() {
@@ -228,9 +228,7 @@ function MarkOnline() {
         const params = {testId};
         confirmFinishByTeacher(params).then((res: any) => {
             if (res.code === 0) {
-                navigate('/myResult?status=1', {
-                    replace: true
-                })
+                myNavigate('/myResult', {replace: true}, {status: '1'})
             } else {
                 $message('error', '操作失败，请稍后重试')
             }

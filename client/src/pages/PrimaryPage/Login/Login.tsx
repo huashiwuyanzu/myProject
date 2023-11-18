@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useMyNavigate} from "@/configs/router/config.tsx";
 import {Button, Form, Input} from 'antd';
 import {login} from "@/api/auth_api.ts"
 import {$message, $notification} from "@/utils/render.tsx";
@@ -40,6 +40,7 @@ function verificatePassword(password: string | undefined) {
 
 function Login() {
     const [form] = Form.useForm()
+    const myNavigate = useMyNavigate()
     // 用户名和密码的校验结果
     const [verificationResults_1, setVerificationResults_1] = useState<verificationResults>({
         status: undefined,
@@ -49,7 +50,6 @@ function Login() {
         status: undefined,
         msg: undefined
     })
-    const navigate = useNavigate()
 
 
     // 登录
@@ -78,11 +78,12 @@ function Login() {
             login(value).then((res: any) => {
                 if (res.code === 0) {
                     window.localStorage.setItem('token', res.data.tokenStr)
+                    window.localStorage.setItem('isLogin', 'true')
                     getSingleUser({userId}).then(res => {
                         const userInfo = res.data.userInfo
                         userInfo.roleType = roleTypeMap[userInfo.roleType]
                         store.dispatch(changeUserInfo(userInfo))
-                        navigate('/appLayout/user', {
+                        myNavigate('/appLayout/user', {
                             replace: true,
                         })
                     })

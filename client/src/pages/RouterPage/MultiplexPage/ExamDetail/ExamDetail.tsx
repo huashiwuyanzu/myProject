@@ -185,6 +185,10 @@ function useViewState() {
             ]
         };
         const optionForLine = {
+            title: {
+                subtext: '分析结果-2',
+                left: 'center'
+            },
             xAxis: {
                 type: 'category',
                 boundaryGap: false,

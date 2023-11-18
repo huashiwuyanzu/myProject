@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Result, Button} from "antd";
 import {ResultStatusType} from "antd/es/result";
 import {getSearchInUrl} from "@/utils/util.ts";
-import {useNavigate} from "react-router-dom";
+import {useMyNavigate} from "@/configs/router/config.tsx";
 import './MyResult.scss'
 
 const statusMap: Record<string, string> = {
@@ -24,7 +24,7 @@ function MyResult() {
     const [status, setStatus] = useState<string>('500')
     const [notice, setNotice] = useState<string>('服务器出错')
     const [textInButton, setTextInButton] = useState<string>('返回首页')
-    const navigate = useNavigate()
+    const myNavigate = useMyNavigate()
     useEffect(() => {
         if (statusInUrl === '1') {
             setStatus('success')
@@ -41,10 +41,10 @@ function MyResult() {
     function handleError() {
         console.log(statusInUrl)
         if (statusInUrl === '403') {
-            navigate('/login')
+            window.location.replace('http://127.0.0.1:5173/login')
         }
         if (statusInUrl === '1') {
-            navigate('/appLayout/courseArr', {
+            myNavigate('/appLayout/courseArr', {
                 replace: true
             })
         }

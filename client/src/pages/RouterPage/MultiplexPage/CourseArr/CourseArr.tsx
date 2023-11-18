@@ -28,7 +28,7 @@ import {collectTestByTeacher, getPageTestByStudent, getPageTestByTeacher} from "
 import FormComponent from "@/Component/FormComponent.tsx";
 import {$message} from "@/utils/render.tsx";
 import globalCss from '@/configs/globalStyle/global.module.css'
-import {useNavigate} from "react-router-dom";
+import {openWindowInBlank, useMyNavigate} from "@/configs/router/config.tsx";
 import './CourseArr.scss'
 
 const {Title, Paragraph} = Typography;
@@ -57,7 +57,7 @@ interface TestInfo {
 function useStudent() {
     // 开始考试
     const toExamOnline = function (testId: string, courseName: string) {
-        window.open(`http://localhost:5173/examOnline?testId=${testId}&courseName=${courseName}`, '_blank')
+        openWindowInBlank('/examOnline', {testId, courseName})
     }
     return {toExamOnline}
 }
@@ -68,7 +68,7 @@ function useTeacher(
 ) {
     // 发布测试
     const toCreateTest = function (courseId: string, courseName: string) {
-        window.open(`http://localhost:5173/createTest?courseId=${courseId}&courseName=${courseName}`, '_blank')
+        openWindowInBlank('/createTest', {courseId, courseName})
     }
     // 收卷
     const collectTest = function (testId: string) {
@@ -84,7 +84,7 @@ function useTeacher(
     }
     // 评卷
     const toMarkOnline = function (testId: string) {
-        window.open(`http://localhost:5173/markOnline?testId=${testId}`, '_blank')
+        openWindowInBlank('markOnline', {testId})
     }
     return {collectTest, toMarkOnline, toCreateTest}
 }
@@ -98,11 +98,12 @@ function CourseArr() {
     const [formDrawerBeRender, setFormDrawerBeRender] = useState(false)
     const [paramsForForm, setParamsForForm] = useState<undefined | Record<string, any>>(undefined)
     const [showModal, setShowModal] = useState<boolean>(false)
-    const navigate = useNavigate()
+    const myNavigate = useMyNavigate()
 
     // 查看考试详情
     const toExamDetail = function (testId: string) {
-        navigate(`/examDetail?testId=${testId}&userId=${userId}&roleType=${roleType}`)
+        // myNavigate(`/examDetail?testId=${testId}&userId=${userId}&roleType=${roleType}`)
+        myNavigate('/examDetail', undefined, {testId, userId: userId as string, roleType: roleType as string})
     }
     // 获取课程下的考试数据
     const getTestList = function (courseId: string): void {

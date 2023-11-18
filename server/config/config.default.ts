@@ -45,11 +45,11 @@ export default (appInfo: EggAppInfo) => {
       ignoreJSON: true,
     },
     domainWhiteList: [
-      'http://localhost:5173',
+      'http://127.0.0.1:5173',
     ],
   };
   config.cors = {
-    origin: 'http://localhost:5173',
+    origin: 'http://127.0.0.1:5173',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
   config.validate = {

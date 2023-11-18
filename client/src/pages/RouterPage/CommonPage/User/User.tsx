@@ -120,6 +120,8 @@ function User() {
             const data = res.data.userInfo
             data.roleType = roleTypeMap[data.roleType]
             setUserInfo(data)
+        }).catch(() => {
+            $message('error', '服务端出错')
         })
     }
     const {updatePic, submitPicture, openForm} = useUserInfo(getUserInfo, setVisualForForm, setParamsForForm)
@@ -147,6 +149,7 @@ function User() {
             >
                 <FormComponent formOptions={paramsForForm as undefined}></FormComponent>
             </Modal>
+            {/*用户信息和参与的课程*/}
             <Col xs={24} sm={24} md={24} lg={24} xl={16} className='user__left'>
                 {/*用户信息*/}
                 <Card
@@ -211,6 +214,7 @@ function User() {
                     />
                 </Card>
             </Col>
+            {/*未处理的消息*/}
             <Col xs={0} sm={0} md={0} lg={0} xl={8} className='user__right'>
                 <Badge.Ribbon text='未处理信息：10'>
                     <Card title="消息列表" className='message-card'>

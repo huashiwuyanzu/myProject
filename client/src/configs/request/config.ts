@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {replaceWindow} from "@/configs/router/config.tsx";
 
 // 开发环境下的基础URL
 const baseUrl: string = import.meta.env.VITE_BASEURL; //http://127.0.0.1:7001
@@ -17,13 +18,14 @@ const correctnessHandler = function (response: any) {
 const errorHandler = function (error: any) {
     if (error.response.status === 403) {
         // token过期
-        // window.location.replace(`/error?status=403`)
+        // TOTO
     } else if (error.response.status === 404) {
         // 页面丢失
-        // window.location.replace(`/error?status=404`)
+        replaceWindow('/myResult',{status:'404'})
     } else {
-        // window.location.replace(`/error?status=500`)
+        // replaceWindow('/myResult',{status:'500'})
     }
+    window.localStorage.setItem('path', '/myResult')
     return Promise.reject(error)
 }
 // 配置请求和响应拦截

@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 import {getPageTopic} from "@/api/topic.ts";
 import store from "@/redux/store.ts";
 import {$message} from "@/utils/render.tsx";
-import {useNavigate} from "react-router-dom";
+import {useMyNavigate} from "@/configs/router/config.tsx";
 
 const {Header, Content} = Layout
 const {Text, Paragraph} = Typography
@@ -25,7 +25,7 @@ function ExamOnline() {
     const [isModalOpenSecond, setIsModalOpenSecond] = useState<boolean>(false)
     const [reply, setReply] = useState<Record<string, string | any> | undefined>(undefined);
     const [form] = Form.useForm();
-    const navigate = useNavigate()
+    const myNavigate = useMyNavigate()
 
     // 获取测试数据
     function getTestInfo() {
@@ -61,9 +61,7 @@ function ExamOnline() {
         params.replyList = replyList
         submitTestByStudent(params).then((res: any) => {
             if (res.code === 0) {
-                navigate('/myResult?status=1', {
-                    replace: true
-                })
+                myNavigate('/myResult', {replace: true}, {status: '1'})
                 setReply(undefined)
                 setIsModalOpen(false)
                 setIsModalOpenSecond(false)

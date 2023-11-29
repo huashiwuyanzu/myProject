@@ -9,9 +9,9 @@ const token = window.localStorage.getItem('token')
 
 const guard = routerGuard()
 
-if (findIndexByKey(guard, 'path', window.location.pathname) === -1) {
-    window.location.replace('/appLayout/user')
-}
+// if (findIndexByKey(guard, 'path', window.location.pathname) === -1) {
+//     window.location.replace('/appLayout/user')
+// }
 if (window.location.pathname !== '/login' && window.location.pathname !== '/myResult' && token !== null) {
     // 此处await处理  确保登陆后的页面每次刷新都能拿到userInfo和token
     await new Promise((resolve, reject) => {
@@ -39,7 +39,6 @@ if (indirectRoutes.indexOf(window.location.pathname) !== -1 && window.localStora
     const {role} = roleRouteItem
     if (role.indexOf((store.getState().userInfo.roleType) as string) === -1) {
         window.location.replace('/appLayout/user')
-
     }
 }
 

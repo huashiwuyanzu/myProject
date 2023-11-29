@@ -84,7 +84,7 @@ function useTeacher(
     }
     // 评卷
     const toMarkOnline = function (testId: string) {
-        openWindowInBlank('markOnline', {testId})
+        openWindowInBlank('/markOnline', {testId})
     }
     return {collectTest, toMarkOnline, toCreateTest}
 }
